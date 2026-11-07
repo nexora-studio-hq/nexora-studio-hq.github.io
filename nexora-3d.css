@@ -1,0 +1,67 @@
+
+/* =====================================================
+   NEXORA — 3D VISUAL LAYER
+===================================================== */
+
+.hero-stage {
+    isolation: isolate;
+}
+
+#nx3d {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    opacity: .82;
+    pointer-events: none;
+}
+
+.hero-copy {
+    transform: translateZ(0);
+}
+
+.p-card,
+.service-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.p-card {
+    transition:
+        transform .24s ease,
+        box-shadow .28s ease,
+        border-color .28s ease;
+}
+
+.p-card img,
+.p-card video {
+    transform: translateZ(0);
+}
+
+@media (max-width: 760px) {
+    #nx3d {
+        opacity: .45;
+    }
+
+    .p-card,
+    .service-card {
+        transform: none !important;
+        will-change: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #nx3d {
+        opacity: .3;
+    }
+
+    .p-card,
+    .service-card {
+        transform: none !important;
+        will-change: auto;
+    }
+}

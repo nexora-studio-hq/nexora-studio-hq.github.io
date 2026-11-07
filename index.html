@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>NEXORA | خدمات دیجیتال</title>
+
+    <meta name="description" content="NEXORA؛ طراحی گرافیک، طراحی سایت، تدوین ویدیو، سئو و خدمات دیجیتال.">
+    <meta name="theme-color" content="#f5f5f7">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://nexora-studio-hq.github.io/">
+    <link rel="icon" href="images/nexora-logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/nexora-logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nexora-3d.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <a class="brand" href="#home" data-page="home" aria-label="صفحه اصلی NEXORA">
+        <img src="images/nexora-logo.png" alt="NEXORA">
+        <span>خدمات دیجیتال</span>
+    </a>
+
+    <nav class="top-nav" id="mainNav" aria-label="منوی اصلی">
+        <a class="menu-btn active" href="#home" data-page="home">خانه</a>
+        <a class="menu-btn" href="#services" data-page="services">خدمات</a>
+        <a class="menu-btn" href="#portfolio" data-page="portfolio">نمونه‌کارها</a>
+        <a class="menu-btn" href="#tutorials" data-page="tutorials">آموزش‌ها</a>
+        <a class="menu-btn" href="#about" data-page="about">درباره ما</a>
+        <a class="menu-btn" href="#order" data-page="order">ثبت سفارش</a>
+        <a class="menu-btn" href="#contact" data-page="contact">تماس</a>
+    </nav>
+
+    <div class="header-actions">
+        <button class="search-button" id="searchBtn" type="button" aria-label="جست‌وجو">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 5 5"></path>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<section class="search-panel" id="searchPanel" aria-label="جست‌وجو در سایت">
+    <div class="search-input-row">
+        <input id="siteSearch" type="search" placeholder="جست‌وجو در نمونه‌کارها..." autocomplete="off">
+        <button id="searchClose" type="button" aria-label="بستن">×</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+</section>
+
+<main id="siteMain">
+
+    <!-- صفحه خانه -->
+    <section class="page active-page" id="home">
+
+        <div class="hero-stage">
+            <canvas id="nx3d" aria-hidden="true"></canvas>
+
+            <div class="hero-copy">
+                <p class="eyebrow">DESIGN · VIDEO · WEB · DIGITAL</p>
+
+                <h1>NEXORA</h1>
+
+                <h2>ایده‌هایت را به تجربه تبدیل کن.</h2>
+
+                <p class="hero-description">
+                    از طراحی بصری تا وب‌سایت و ویدیو؛
+                    برای ساختن حضوری متمایز در دنیای دیجیتال.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="button-primary" href="#portfolio" data-page="portfolio">
+                        مشاهده نمونه‌کارها
+                        <span aria-hidden="true">←</span>
+                    </a>
+
+                    <a class="button-secondary" href="#services" data-page="services">
+                        آشنایی با خدمات
+                    </a>
+                </div>
+
+                <p class="hero-caption">CREATE. DESIGN. GROW.</p>
+            </div>
+
+            <a class="scroll-indicator" href="#services" data-page="services" aria-label="مشاهده بخش بعدی">
+                <span></span>
+            </a>
+        </div>
+
+        <div class="feature-section">
+            <div class="feature-copy">
+                <p class="eyebrow">MADE FOR YOUR NEXT IDEA</p>
+                <h2>طراحی ساده‌تر.
+                    <span>تأثیر ماندگارتر.</span>
+                </h2>
+                <p>
+                    نکسورا روی ترکیب طراحی، فناوری و خلاقیت تمرکز دارد.
+                    هر پروژه باید هدف مشخصی داشته باشد و تجربه‌ای دلنشین بسازد.
+                </p>
+
+                <a class="text-link" href="#about" data-page="about">
+                    بیشتر درباره NEXORA
+                    <span aria-hidden="true">←</span>
+                </a>
+            </div>
+
+            <div class="feature-visual">
+                <img src="images/nexora-poster.png" alt="نمونه طراحی برند NEXORA" loading="lazy">
+            </div>
+        </div>
+
+        <section class="video-section">
+            <p class="eyebrow">NEXORA SHOWCASE</p>
+            <h2>دنیای دیجیتال با NEXORA</h2>
+            <p>نگاهی به ویدیوی معرفی برند.</p>
+
+            <video class="main-video" controls playsinline preload="metadata" poster="images/nexora-poster.png">
+                <source src="videos/nexora.mp4" type="video/mp4">
+                مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+            </video>
+        </section>
+
+        <section class="home-services">
+            <div class="section-heading">
+                <p class="eyebrow">WHAT WE DO</p>
+                <h2>ابزارهای ساخت ایده</h2>
+                <p>چند مسیر برای تبدیل ایده به یک محصول دیجیتال.</p>
+            </div>
+
+            <div class="service-grid">
+                <article class="service-card">
+                    <span class="service-number">01</span>
+                    <h3>طراحی گرافیک</h3>
+                    <p>پوستر، بنر و محتوای بصری برای معرفی حرفه‌ای ایده‌ها.</p>
+                </article>
+
+                <article class="service-card">
+                    <span class="service-number">02</span>
+                    <h3>طراحی سایت</h3>
+                    <p>ساخت صفحات مدرن، واکنش‌گرا و مناسب کسب‌وکار.</p>
+                </article>
+
+                <article class="service-card">
+                    <span class="service-number">03</span>
+                    <h3>تدوین ویدیو</h3>
+                    <p>ویدیوهای کوتاه و تبلیغاتی با روایت بصری منسجم.</p>
+                </article>
+            </div>
+
+            <a class="text-link centered-link" href="#services" data-page="services">
+                مشاهده تمام خدمات
+                <span aria-hidden="true">←</span>
+            </a>
+        </section>
+    </section>
+
+    <!-- صفحه خدمات -->
+    <section class="page" id="services">
+        <div class="page-heading">
+            <p class="eyebrow">OUR SERVICES</p>
+            <h1>خدمات NEXORA</h1>
+            <p>خدمات دیجیتال برای ساخت و رشد ایده‌های شما.</p>
+        </div>
+
+        <div class="service-grid full-service-grid">
+            <article class="service-card">
+                <span class="service-number">01</span>
+                <h2>طراحی گرافیک</h2>
+                <p>طراحی پوستر، پست شبکه‌های اجتماعی، بنر و محتوای بصری.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-number">02</span>
+                <h2>طراحی سایت</h2>
+                <p>ساخت سایت‌های مدرن، واکنش‌گرا و مناسب معرفی کسب‌وکار.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-number">03</span>
+                <h2>تدوین ویدیو</h2>
+                <p>تدوین ویدیوهای کوتاه برای تبلیغات و شبکه‌های اجتماعی.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-number">04</span>
+                <h2>بهینه‌سازی SEO</h2>
+                <p>بهبود ساختار محتوا و اصول اولیه بهینه‌سازی برای موتورهای جست‌وجو.</p>
+            </article>
+
+            <article class="service-card">
+                <span class="service-number">05</span>
+                <h2>خدمات هوش مصنوعی</h2>
+                <p>ایده‌پردازی، کمک به تولید محتوا و استفاده خلاقانه از ابزارهای AI.</p>
+            </article>
+        </div>
+
+        <div class="simple-cta">
+            <h2>ایده‌ای برای ساخت داری؟</h2>
+            <p>جزئیات پروژه‌ات را بفرست تا مسیر شروع مشخص شود.</p>
+            <a class="button-primary" href="#order" data-page="order">ثبت سفارش</a>
+        </div>
+    </section>
+
+    <!-- صفحه نمونه‌کارها -->
+    <section class="page" id="portfolio">
+        <div class="page-heading">
+            <p class="eyebrow">SELECTED PROJECTS</p>
+            <h1>نمونه‌کارها</h1>
+            <p>مجموعه‌ای از طراحی‌ها، ویدیوها و تمرین‌های دیجیتال نکسورا.</p>
+        </div>
+
+        <div class="notice">
+            نمونه‌های مربوط به برندهای دیگر، پروژه‌های تمرینی یا مفهومی هستند
+            و به معنی همکاری رسمی با آن برندها نیستند.
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid" aria-live="polite">
+            <p class="loading-message">در حال بارگذاری نمونه‌کارها...</p>
+        </div>
+    </section>
+
+    <!-- صفحه آموزش‌ها -->
+    <section class="page" id="tutorials">
+        <div class="page-heading">
+            <p class="eyebrow">LEARN AND CREATE</p>
+            <h1>آموزش‌ها</h1>
+            <p>یادگیری قدم‌به‌قدم ابزارهای موردنیاز برای ساخت پروژه دیجیتال.</p>
+        </div>
+
+        <div class="tutorial-list">
+            <details class="tutorial-card">
+                <summary>آموزش طراحی با Canva</summary>
+                <ol>
+                    <li>انتخاب اندازه مناسب طراحی</li>
+                    <li>انتخاب تصویر و پس‌زمینه</li>
+                    <li>ترکیب رنگ‌ها و ایجاد سلسله‌مراتب بصری</li>
+                    <li>انتخاب فونت خوانا</li>
+                    <li>ساخت و خروجی گرفتن از طرح</li>
+                </ol>
+            </details>
+
+            <details class="tutorial-card">
+                <summary>آموزش تدوین با CapCut</summary>
+                <ol>
+                    <li>وارد کردن ویدیو</li>
+                    <li>برش قسمت‌های اضافی</li>
+                    <li>تنظیم صدا و موسیقی</li>
+                    <li>استفاده متعادل از افکت و انتقال</li>
+                    <li>گرفتن خروجی مناسب پلتفرم مقصد</li>
+                </ol>
+            </details>
+
+            <details class="tutorial-card">
+                <summary>آموزش ابزارهای هوش مصنوعی</summary>
+                <ol>
+                    <li>تبدیل ایده به توضیح دقیق</li>
+                    <li>نوشتن دستور روشن و مشخص</li>
+                    <li>بررسی خروجی و اصلاح اشکالات</li>
+                    <li>استفاده از خروجی در پروژه‌های واقعی</li>
+                </ol>
+            </details>
+        </div>
+    </section>
+
+    <!-- صفحه درباره ما -->
+    <section class="page" id="about">
+        <div class="page-heading">
+            <p class="eyebrow">ABOUT NEXORA</p>
+            <h1>سادگی، خلاقیت و فناوری</h1>
+            <p>NEXORA یک برند دیجیتال در مسیر یادگیری و ساخت تجربه‌های مدرن است.</p>
+        </div>
+
+        <div class="about-panel">
+            <div>
+                <p class="eyebrow">OUR APPROACH</p>
+                <h2>هر جزئیات باید دلیلی داشته باشد.</h2>
+            </div>
+            <div>
+                <p>
+                    نکسورا روی طراحی گرافیک، طراحی سایت، تدوین ویدیو،
+                    بهینه‌سازی SEO و ابزارهای هوش مصنوعی تمرکز دارد.
+                </p>
+                <p>
+                    هدف این پروژه، ساخت تجربه‌های دیجیتال کاربردی با ظاهر مرتب،
+                    عملکرد مناسب و توجه به جزئیات است.
+                </p>
+                <p>
+                    تعدادی از نمونه‌کارها آموزشی و مفهومی هستند و برای تمرین
+                    طراحی و توسعه ساخته شده‌اند.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحه ثبت سفارش -->
+    <section class="page" id="order">
+        <div class="page-heading">
+            <p class="eyebrow">START A PROJECT</p>
+            <h1>بیایید ایده‌ات را بسازیم.</h1>
+            <p>مشخصات اولیه را وارد کن تا متن آماده سفارش ساخته شود.</p>
+        </div>
+
+        <div class="order-panel">
+            <form id="orderForm">
+                <label for="orderService">خدمت موردنظر</label>
+                <select id="orderService" name="service" required>
+                    <option value="طراحی گرافیک">طراحی گرافیک</option>
+                    <option value="طراحی سایت">طراحی سایت</option>
+                    <option value="تدوین ویدیو">تدوین ویدیو</option>
+                    <option value="بهینه‌سازی SEO">بهینه‌سازی SEO</option>
+                    <option value="خدمات هوش مصنوعی">خدمات هوش مصنوعی</option>
+                </select>
+
+                <label for="orderName">نام شما (اختیاری)</label>
+                <input id="orderName" name="name" type="text" autocomplete="name" placeholder="نام">
+
+                <label for="orderDescription">توضیح پروژه</label>
+                <textarea id="orderDescription" name="description" rows="5" required placeholder="مثلاً: یک پوستر تبلیغاتی با رنگ‌بندی آبی و مشکی..."></textarea>
+
+                <label for="orderPreview">متن سفارش</label>
+                <textarea id="orderPreview" rows="6" readonly placeholder="متن سفارش پس از تکمیل اطلاعات اینجا نمایش داده می‌شود."></textarea>
+
+                <button class="button-primary" type="submit">آماده‌سازی سفارش</button>
+                <p id="orderStatus" class="form-status" role="status"></p>
+            </form>
+        </div>
+
+        <div class="price-panel">
+            <h2>خدمات و قیمت‌های تقریبی</h2>
+            <p>قیمت نهایی به جزئیات پروژه بستگی دارد.</p>
+
+            <div class="price-row">
+                <span>طراحی گرافیک</span>
+                <strong>۵۰ تا ۳۰۰ هزار تومان</strong>
+            </div>
+            <div class="price-row">
+                <span>طراحی سایت ساده</span>
+                <strong>توافقی</strong>
+            </div>
+            <div class="price-row">
+                <span>تدوین ویدیو کوتاه</span>
+                <strong>۲۰۰ تا ۵۰۰ هزار تومان</strong>
+            </div>
+            <div class="price-row">
+                <span>خدمات SEO</span>
+                <strong>توافقی</strong>
+            </div>
+            <div class="price-row">
+                <span>خدمات هوش مصنوعی</span>
+                <strong>توافقی</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحه تماس -->
+    <section class="page" id="contact">
+        <div class="page-heading">
+            <p class="eyebrow">GET IN TOUCH</p>
+            <h1>در ارتباط باشیم.</h1>
+            
+        </div>
+
+        <div class="contact-grid"><article class="contact-card">
+                <h2>کانال تلگرام</h2>
+                <p>اخبار، آموزش‌ها و نمونه‌کارهای جدید NEXORA.</p>
+                <a data-link="telegram" href="#" target="_blank" rel="noopener">عضویت در کانال</a>
+            </article>
+
+            <article class="contact-card">
+                <h2>بات تلگرام</h2>
+                <p>دستیار هوشمند NEXORA برای پاسخ و ثبت سفارش.</p>
+                <a data-link="telegramBot" href="#" target="_blank" rel="noopener">شروع گفتگو با بات</a>
+            </article>
+
+            <article class="contact-card">
+                <h2>یوتیوب</h2>
+                <p>ویدیوهای آموزشی طراحی، تبلیغات و تدوین.</p>
+                <a data-link="youtube" href="#" target="_blank" rel="noopener">مشاهده کانال</a>
+            </article></div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <a class="footer-brand" href="#home" data-page="home">NEXORA</a>
+    <p>CREATE · DESIGN · GROW</p>
+    <small>© NEXORA. تمام حقوق محفوظ است.</small>
+    <small class="made-by">ساخته شده توسط امیرعلی رئیسی</small>
+</footer>
+
+<button id="toTop" class="to-top" type="button" aria-label="بازگشت به بالا">↑</button>
+
+<script src="data.js"></script>
+<script src="nexora-enhancements.js" defer></script>
+<script src="nexora-3d-full.js" defer></script>
+
+</body>
+</html>
