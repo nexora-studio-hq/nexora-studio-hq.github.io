@@ -1,3 +1,0 @@
-# NEXORA
-
-Website migration staging.
