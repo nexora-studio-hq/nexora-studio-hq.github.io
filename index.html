@@ -331,13 +331,17 @@
                 <label for="orderName">نام شما (اختیاری)</label>
                 <input id="orderName" name="name" type="text" autocomplete="name" placeholder="نام">
 
+                <label for="orderContact">راه ارتباطی (تلگرام یا ایمیل، اختیاری)</label>
+                <input id="orderContact" name="contact" type="text" autocomplete="off" maxlength="120" placeholder="@username یا ایمیل">
+
                 <label for="orderDescription">توضیح پروژه</label>
                 <textarea id="orderDescription" name="description" rows="5" required placeholder="مثلاً: یک پوستر تبلیغاتی با رنگ‌بندی آبی و مشکی..."></textarea>
 
                 <label for="orderPreview">متن سفارش</label>
                 <textarea id="orderPreview" rows="6" readonly placeholder="متن سفارش پس از تکمیل اطلاعات اینجا نمایش داده می‌شود."></textarea>
 
-                <button class="button-primary" type="submit">آماده‌سازی سفارش</button>
+                <div class="nx-honeypot" aria-hidden="true"><label for="website">این قسمت را خالی بگذارید</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+                <button class="button-primary" type="submit">ارسال درخواست به NEXORA</button>
                 <p id="orderStatus" class="form-status" role="status"></p>
             </form>
         </div>
@@ -411,5 +415,6 @@
 <script src="nexora-enhancements.js" defer></script>
 <script src="nexora-3d-full.js" defer></script>
 
+    <script src="nexora-order-api.js" defer></script>
 </body>
 </html>
