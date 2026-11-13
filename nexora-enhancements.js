@@ -330,6 +330,128 @@
             container.appendChild(notice);
         }
 
+        // Work-specific reviews section
+        var reviewsSection = document.createElement("section");
+        reviewsSection.className = "reviews-section work-reviews";
+        reviewsSection.dataset.workKey = item.key;
+
+        var reviewsHeading = document.createElement("div");
+        reviewsHeading.className = "section-heading";
+        var reviewsTitle = document.createElement("h2");
+        reviewsTitle.textContent = "نظرات درباره این نمونه‌کار";
+        var reviewsIntro = document.createElement("p");
+        reviewsIntro.textContent = "تجربه و دیدگاه خودت را درباره این پروژه با ما به اشتراک بگذار.";
+        reviewsHeading.append(reviewsTitle, reviewsIntro);
+
+        var reviewsSummary = document.createElement("div");
+        reviewsSummary.className = "reviews-summary";
+        var averageStat = document.createElement("div");
+        averageStat.className = "review-stat";
+        var averageValue = document.createElement("strong");
+        averageValue.id = "workReviewsAverage";
+        averageValue.textContent = "—";
+        var averageLabel = document.createElement("span");
+        averageLabel.textContent = "میانگین امتیاز";
+        averageStat.append(averageValue, averageLabel);
+        var countStat = document.createElement("div");
+        countStat.className = "review-stat";
+        var countValue = document.createElement("strong");
+        countValue.id = "workReviewsCount";
+        countValue.textContent = "۰";
+        var countLabel = document.createElement("span");
+        countLabel.textContent = "نظر منتشرشده";
+        countStat.append(countValue, countLabel);
+        reviewsSummary.append(averageStat, countStat);
+
+        var reviewsList = document.createElement("div");
+        reviewsList.className = "reviews-grid";
+        reviewsList.id = "workReviewsList";
+        var loadingMessage = document.createElement("p");
+        loadingMessage.className = "reviews-message";
+        loadingMessage.textContent = "در حال دریافت نظرها...";
+        reviewsList.appendChild(loadingMessage);
+
+        var formPanel = document.createElement("div");
+        formPanel.className = "reviews-form-panel";
+        var formHeading = document.createElement("div");
+        formHeading.className = "reviews-form-heading";
+        var formTitle = document.createElement("h3");
+        formTitle.textContent = "ثبت دیدگاه شما";
+        var formIntro = document.createElement("p");
+        formIntro.textContent = "نظر شما پس از بررسی و تأیید، در همین صفحه نمایش داده می‌شود.";
+        formHeading.append(formTitle, formIntro);
+
+        var reviewForm = document.createElement("form");
+        reviewForm.className = "reviews-form";
+        reviewForm.id = "workReviewForm";
+
+        var nameLabel = document.createElement("label");
+        nameLabel.htmlFor = "workReviewName";
+        nameLabel.textContent = "نام";
+        var nameInput = document.createElement("input");
+        nameInput.id = "workReviewName";
+        nameInput.name = "customer_name";
+        nameInput.type = "text";
+        nameInput.minLength = 2;
+        nameInput.maxLength = 60;
+        nameInput.autocomplete = "name";
+        nameInput.placeholder = "نام نمایشی شما";
+        nameInput.required = true;
+
+        var ratingLabel = document.createElement("label");
+        ratingLabel.htmlFor = "workReviewRating";
+        ratingLabel.textContent = "امتیاز";
+        var ratingSelect = document.createElement("select");
+        ratingSelect.id = "workReviewRating";
+        ratingSelect.name = "rating";
+        ratingSelect.required = true;
+        var ratingPlaceholder = document.createElement("option");
+        ratingPlaceholder.value = "";
+        ratingPlaceholder.textContent = "انتخاب امتیاز";
+        ratingPlaceholder.disabled = true;
+        ratingPlaceholder.selected = true;
+        ratingSelect.appendChild(ratingPlaceholder);
+        [5, 4, 3, 2, 1].forEach(function (value) {
+            var option = document.createElement("option");
+            option.value = String(value);
+            option.textContent = "★".repeat(value) + " (" + value + " از ۵)";
+            ratingSelect.appendChild(option);
+        });
+
+        var textLabel = document.createElement("label");
+        textLabel.htmlFor = "workReviewText";
+        textLabel.textContent = "متن نظر";
+        var textInput = document.createElement("textarea");
+        textInput.id = "workReviewText";
+        textInput.name = "review_text";
+        textInput.rows = 4;
+        textInput.minLength = 5;
+        textInput.maxLength = 1000;
+        textInput.placeholder = "دیدگاه خود را بنویسید...";
+        textInput.required = true;
+
+        var reviewStatus = document.createElement("p");
+        reviewStatus.className = "form-status";
+        reviewStatus.id = "workReviewStatus";
+        reviewStatus.setAttribute("role", "status");
+        reviewStatus.setAttribute("aria-live", "polite");
+
+        var submitButton = document.createElement("button");
+        submitButton.className = "button-primary";
+        submitButton.type = "submit";
+        submitButton.id = "workReviewSubmit";
+        submitButton.textContent = "ثبت نظر";
+
+        reviewForm.append(
+            nameLabel, nameInput,
+            ratingLabel, ratingSelect,
+            textLabel, textInput,
+            reviewStatus, submitButton
+        );
+        formPanel.append(formHeading, reviewForm);
+        reviewsSection.append(reviewsHeading, reviewsSummary, reviewsList, formPanel);
+        container.appendChild(reviewsSection);
+
         var actions = document.createElement("div");
         actions.className = "detail-actions";
 
