@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#080d18">
+  <title>مدیریت نظرات | NEXORA</title>
+  <link rel="icon" href="images/nexora-logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#070b13;--panel:#0e1625;--line:#1e2b40;--text:#edf4ff;--muted:#91a1b8;--blue:#3b82f6;--green:#22c55e;--red:#ef4444}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#152b4b 0,transparent 55%),var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,sans-serif}
+    button,input,select{font:inherit}
+    .wrap{width:min(960px,calc(100% - 28px));margin:0 auto;padding:36px 0 70px}
+    header{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+    header img{width:48px;height:48px;object-fit:contain}
+    h1{font-size:clamp(23px,4vw,34px);margin:0}
+    .sub{color:var(--muted);margin:4px 0 0;font-size:13px}
+    .panel,.review{background:rgba(14,22,37,.94);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 18px 55px #0003}
+    .panel{margin-bottom:18px}
+    label{display:block;color:#c4d2e5;font-size:13px;margin-bottom:8px}
+    .row{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+    .field{flex:1;min-width:220px}
+    input,select{width:100%;background:#080f1c;color:var(--text);border:1px solid #2a3a52;border-radius:11px;padding:12px 13px;outline:none}
+    input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #3b82f622}
+    button{border:0;border-radius:11px;padding:11px 17px;color:white;background:var(--blue);cursor:pointer;font-weight:650}
+    button:disabled{opacity:.5;cursor:wait}
+    .secondary{background:#263449}
+    .approve{background:#15803d}.reject{background:#b91c1c}
+    .status{min-height:24px;color:var(--muted);font-size:13px;margin:12px 0 0}
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0 14px;flex-wrap:wrap}
+    .toolbar h2{font-size:20px;margin:0}
+    .toolbar select{width:auto;min-width:150px}
+    .list{display:grid;gap:12px}
+    .review h3{font-size:16px;margin:0}
+    .meta{color:var(--muted);font-size:12px;margin-top:5px}
+    .stars{color:#fbbf24;letter-spacing:2px;white-space:nowrap}
+    .review-text{line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;margin:14px 0}
+    .review-foot{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .actions{display:flex;gap:8px}
+    .empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed #34445c;border-radius:16px}
+    .hidden{display:none!important}
+    .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .badge{font-size:11px;border:1px solid #31435d;color:#b7c8df;border-radius:30px;padding:4px 9px}
+    @media(max-width:560px){.wrap{padding-top:22px}.panel,.review{padding:15px}.row{align-items:stretch}.row button{width:100%}.toolbar{align-items:stretch}.toolbar select{width:100%}.review-foot{align-items:stretch}.actions{width:100%}.actions button{flex:1}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <img src="images/nexora-logo.png" alt="NEXORA">
+      <div>
+        <h1>مدیریت نظرات NEXORA</h1>
+        <p class="sub">پنل خصوصی بررسی و انتشار بازخورد مشتریان</p>
+      </div>
+    </header>
+
+    <section class="panel" id="loginPanel">
+      <div class="topline">
+        <div>
+          <strong>ورود مدیر</strong>
+          <p class="sub">توکن مدیریت فقط در حافظه همین صفحه استفاده می‌شود و ذخیره نمی‌شود.</p>
+        </div>
+        <span class="badge">SECURE ACCESS</span>
+      </div>
+      <form id="loginForm" class="row" autocomplete="off">
+        <div class="field">
+          <label for="adminToken">توکن مدیریت</label>
+          <input id="adminToken" type="password" placeholder="توکن Cloudflare Secret را وارد کن" autocomplete="off" required>
+        </div>
+        <button id="loginButton" type="submit">ورود به پنل</button>
+      </form>
+      <p class="status" id="loginStatus" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="toolbar">
+        <h2>فهرست نظرات</h2>
+        <div class="row">
+          <select id="statusFilter" aria-label="فیلتر وضعیت">
+            <option value="pending">در انتظار بررسی</option>
+            <option value="approved">تأییدشده</option>
+            <option value="rejected">ردشده</option>
+            <option value="all">همه نظرها</option>
+          </select>
+          <button class="secondary" id="refreshButton" type="button">بروزرسانی</button>
+          <button class="secondary" id="logoutButton" type="button">خروج</button>
+        </div>
+      </div>
+      <p class="status" id="dashboardStatus" role="status" aria-live="polite"></p>
+      <div class="list" id="reviewsList"></div>
+    </section>
+  </main>
+
+  <script>
+  (function(){
+    "use strict";
+    const API = "https://nexora-api.amiraliraisi73.workers.dev";
+    const $ = id => document.getElementById(id);
+    let adminToken = "";
+    const fa = value => Number(value).toLocaleString("fa-IR");
+    const statusNames = {pending:"در انتظار بررسی",approved:"تأییدشده",rejected:"ردشده"};
+    function setStatus(id,message){$(id).textContent=message;}
+    function authHeaders(){return {Authorization:"Bearer "+adminToken,Accept:"application/json"};}
+    function clearSession(){
+      adminToken="";
+      $("adminToken").value="";
+      $("dashboard").classList.add("hidden");
+      $("loginPanel").classList.remove("hidden");
+      $("reviewsList").replaceChildren();
+      setStatus("loginStatus","از پنل خارج شدی.");
+    }
+    async function loadReviews(){
+      const status=$("statusFilter").value;
+      setStatus("dashboardStatus","در حال دریافت نظرها...");
+      $("reviewsList").replaceChildren();
+      try{
+        const response=await fetch(API+"/admin/reviews?status="+encodeURIComponent(status),{headers:authHeaders(),cache:"no-store"});
+        const data=await response.json().catch(()=>({}));
+        if(response.status===401){clearSession();setStatus("loginStatus","توکن معتبر نیست یا دسترسی رد شد. دوباره بررسی کن.");return;}
+        if(!response.ok||data.success!==true) throw new Error(data.message||"دریافت اطلاعات ناموفق بود.");
+        const reviews=Array.isArray(data.reviews)?data.reviews:[];
+        setStatus("dashboardStatus",fa(reviews.length)+" نظر پیدا شد.");
+        if(!reviews.length){
+          const empty=document.createElement("div");empty.className="empty";empty.textContent="در این بخش نظری وجود ندارد."; $("reviewsList").append(empty);return;
+        }
+        reviews.forEach(review=>{
+          const card=document.createElement("article");card.className="review";
+          const top=document.createElement("div");top.className="topline";
+          const heading=document.createElement("div");
+          const name=document.createElement("h3");name.textContent=review.customer_name||"مشتری";
+          const meta=document.createElement("div");meta.className="meta";
+          meta.textContent="شناسه: "+fa(review.id)+" · نمونه‌کار: "+review.work_key+" · "+(statusNames[review.status]||review.status);
+          heading.append(name,meta);
+          const stars=document.createElement("span");stars.className="stars";stars.textContent="★".repeat(Math.max(0,Math.min(5,Number(review.rating)||0)))+"☆".repeat(5-Math.max(0,Math.min(5,Number(review.rating)||0)));
+          top.append(heading,stars);
+          const body=document.createElement("p");body.className="review-text";body.textContent=review.review_text||"";
+          const foot=document.createElement("div");foot.className="review-foot";
+          const date=document.createElement("small");date.className="meta";
+          date.textContent=review.created_at?new Date(String(review.created_at).replace(" ","T")+"Z").toLocaleString("fa-IR"):"";
+          foot.append(date);
+          if(review.status==="pending"){
+            const actions=document.createElement("div");actions.className="actions";
+            const approve=document.createElement("button");approve.className="approve";approve.textContent="تأیید";
+            approve.addEventListener("click",()=>moderate(review.id,"approve",approve));
+            const reject=document.createElement("button");reject.className="reject";reject.textContent="رد نظر";
+            reject.addEventListener("click",()=>moderate(review.id,"reject",reject));
+            actions.append(approve,reject);foot.append(actions);
+          }
+          card.append(top,body,foot);$("reviewsList").append(card);
+        });
+      }catch(error){setStatus("dashboardStatus","خطا: "+error.message);}
+    }
+    async function moderate(id,action,button){
+      const label=action==="approve"?"تأیید":"رد";
+      if(!confirm("از "+label+" این نظر مطمئنی؟"))return;
+      button.disabled=true;
+      try{
+        const response=await fetch(API+"/admin/reviews/"+encodeURIComponent(id)+"/"+action,{method:"POST",headers:authHeaders(),cache:"no-store"});
+        const data=await response.json().catch(()=>({}));
+        if(response.status===401){clearSession();setStatus("loginStatus","نشست معتبر نیست؛ دوباره وارد شو.");return;}
+        if(!response.ok||data.success!==true)throw new Error(data.message||"عملیات انجام نشد.");
+        setStatus("dashboardStatus","نظر با موفقیت "+(action==="approve"?"تأیید":"رد")+" شد.");
+        await loadReviews();
+      }catch(error){setStatus("dashboardStatus","خطا: "+error.message);button.disabled=false;}
+    }
+    $("loginForm").addEventListener("submit",async event=>{
+      event.preventDefault();
+      const candidate=$("adminToken").value.trim();
+      if(!candidate)return;
+      adminToken=candidate;
+      $("loginButton").disabled=true;
+      setStatus("loginStatus","در حال بررسی دسترسی...");
+      try{
+        const response=await fetch(API+"/admin/reviews?status=pending",{headers:authHeaders(),cache:"no-store"});
+        const data=await response.json().catch(()=>({}));
+        if(!response.ok||data.success!==true)throw new Error(response.status===401?"توکن نادرست است.":(data.message||"ورود انجام نشد."));
+        $("loginPanel").classList.add("hidden");
+        $("dashboard").classList.remove("hidden");
+        $("statusFilter").value="pending";
+        setStatus("loginStatus","");
+        await loadReviews();
+      }catch(error){adminToken="";setStatus("loginStatus",error.message);$("adminToken").value="";}
+      finally{$("loginButton").disabled=false;}
+    });
+    $("refreshButton").addEventListener("click",loadReviews);
+    $("statusFilter").addEventListener("change",loadReviews);
+    $("logoutButton").addEventListener("click",clearSession);
+  })();
+  </script>
+</body>
+</html>
